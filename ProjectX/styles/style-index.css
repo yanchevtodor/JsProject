@@ -7,6 +7,7 @@ footer {
 #formUp{
     background: dodgerblue;
     padding: 10px;
+
 }
 #login{
     text-align: center;
@@ -19,4 +20,12 @@ footer {
     margin: 200px;
     background: dodgerblue;
     padding: 20px;
+}
+#formUp button {
+    background: dodgerblue;
+}
+#sideBar{
+    width:100px;
+    padding-bottom: 10px;
+    background: dodgerblue;
 }
