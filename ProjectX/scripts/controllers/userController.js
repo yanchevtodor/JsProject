@@ -1,6 +1,8 @@
-function login (){
+function btnLogin (){
+    alert("To do: login")
 
 }
-function register (){
+function btnRegister (){
+    alert("To do: register")
 
 }

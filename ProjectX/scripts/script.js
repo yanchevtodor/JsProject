@@ -1,9 +1,7 @@
-function loadLogin() {
-    $('#result').load("templates/login.html");
-    alert("l")
+function startApp(){
+    $("main").load("templates/home.html")
+    $("#loadingBox").hide();
+    $("#infoBox").hide();
+    $("#errorBox").hide();
 }
-function loadRegister() {
-    $('#result').load("templates/register.html");
-    alert("r")
 
-}

@@ -5,22 +5,32 @@
     <title>ProjectX</title>
     <script src="scripts/libs/jquery-3.1.1.min.js"></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/controllers/userController.js"></script>
+    <script src="scripts/controllers/homeController.js"></script>
+    <script src="scripts/script.js"></script>
     <link rel="stylesheet" type="text/css"  href="styles/style-index.css"/>
 </head>
-<body>
-<div id="formUp">
-    <img src="ntlogo.jpg" alt="ntlogo" style="width:40px;height:40px;">
-    <button onclick="loadLogin()">Home</button>
-    <button onclick="loadLogin()">Login</button>
-    <button onclick="loadRegister()">Register</button>
+<body onload="startApp()">
+<header id="menu">
+    <a href="#" onclick="startApp()" id="linkHome">Home</a>
+    <a href="#" onclick="loadLogin()" id="linkLogin">Login</a>
+    <a href="#" onclick="register()" id="linkRegister">Register</a>
+    <a href="#" onclick="listPosts()" id="linkListBooks">List Books</a>
+    <a href="#" onclick="createPost()" id="linkCreateBook">Create Book</a>
+    <a href="#" onclick="logout()" id="linkLogout">Logout</a>
+    <span id="loggedInUser"></span>
 
-</div>
+</header>
+<section id="loadingBox">Loading ...</section>
 
-<div id="result">
-</div>
+<section id="infoBox">Info</section>
 
+<section id="errorBox">Error</section>
+
+<main>
+onclick=""
+
+</main>
+<footer>(c)Todor Yanchev & Nikola Kolev</footer>
 </body>
-<footer>
-    (c)Todor Yanchev
-</footer>
 </html>
