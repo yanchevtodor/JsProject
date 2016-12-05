@@ -5,20 +5,20 @@
     <title>ProjectX</title>
     <script src="scripts/libs/jquery-3.1.1.min.js"></script>
     <script src="scripts/script.js"></script>
-    <script src="scripts/controllers/userController.js"></script>
     <script src="scripts/controllers/homeController.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/controllers/userController.js"></script>
+    <script src="scripts/controllers/postController.js"></script>
     <link rel="stylesheet" type="text/css"  href="styles/style-index.css"/>
 </head>
 <body onload="startApp()">
 <header id="menu">
-    <a href="#" onclick="startApp()" id="linkHome">Home</a>
-    <a href="#" onclick="loadLogin()" id="linkLogin">Login</a>
-    <a href="#" onclick="register()" id="linkRegister">Register</a>
-    <a href="#" onclick="listPosts()" id="linkListBooks">List Books</a>
-    <a href="#" onclick="createPost()" id="linkCreateBook">Create Book</a>
-    <a href="#" onclick="logout()" id="linkLogout">Logout</a>
-    <span id="loggedInUser"></span>
+    <a href="#" id="linkHome">Home</a>
+    <a href="#" id="linkLogin">Login</a>
+    <a href="#" id="linkRegister">Register</a>
+    <a href="#" id="linkViewPosts">List Posts</a>
+    <a href="#" id="linkCreatePost">Create Post</a>
+    <a href="#" id="linkLogout">Logout</a>
+    <span id="loggedInUser" onclick="viewProfile()"></span>
 
 </header>
 <section id="loadingBox">Loading ...</section>
@@ -28,9 +28,8 @@
 <section id="errorBox">Error</section>
 
 <main>
-onclick=""
-
 </main>
-<footer>(c)Todor Yanchev & Nikola Kolev</footer>
+
 </body>
+<footer>(c)Todor Yanchev & Nikola Kolev</footer>
 </html>
