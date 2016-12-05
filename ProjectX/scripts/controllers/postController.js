@@ -113,21 +113,20 @@ function loadEditPost(postID) {
 function editPost() {  //formBook = EDIT BOOK!!!
 
     let postData = {
-        Title: $('#formEditBook input[name = title]').val(),
-        body: $('#formEditBook input[name=body]').val(),
-        id:  $('#formEditBook input[name=id]').val()
+        Title:  $('#editTitle').val(),
+        body:  $('#editBody').val(),
+        id: $('#editID').val()
     };
-
     $.ajax({
         method:"PUT",
         url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts/" + postData.id,
         headers: getKinveyUserAuthHeaders(),
         data: postData,
-        success: createPostSuccess,
+        success: editPostSuccess,
         error: handleAjaxError
     });
 
-    function createPostSuccess() {
+    function editPostSuccess() {
         showInfo('Post edited.');
         listPosts();
     }
