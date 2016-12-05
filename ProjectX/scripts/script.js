@@ -1,6 +1,5 @@
 function startApp(){
-
-    sessionStorage.clear();
+    //sessionStorage.clear();
     showHideMenuLinks();
     $("main").load("templates/home.html");
 
@@ -14,6 +13,7 @@ function startApp(){
     $("#linkRegister").click(linkRegister);
     $("#linkCreatePost").click(linkCreatePost);
     $("#linkViewPosts").click(linkViewPosts);
+    $("#linkEditPost").click(linkEditPost);
 
     $("#infoBox, #errorBox").click(function() {
         $(this).fadeOut();

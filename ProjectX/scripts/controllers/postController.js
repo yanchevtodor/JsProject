@@ -1,83 +1,134 @@
 function getKinveyUserAuthHeaders() {
-    return {
-        'Authorization': "Kinvey " + sessionStorage.getItem('authToken'),
-    };
+    return{
+        Authorization: "Kinvey "+ sessionStorage.getItem("authToken")
+    }
 }
+
 function listPosts() {
-    $('#books').empty();
-    showView('viewBooks');
+    $('#posts').empty();
+
     $.ajax({
-        method: "GET",
+        method:"GET",
         url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts",
         headers: getKinveyUserAuthHeaders(),
-        success: loadBooksSuccess,
+        success: loadPostsSuccess,
         error: handleAjaxError
     });
-    function loadBooksSuccess(posts) {
-        showInfo('Books loaded.');
-        if (posts.length == 0) {
-            $('#books').text('No books in the library.');
-        } 
-        else {
-            let postsTable = $('<table>').append($('<tr>').append('<th>Title</th>', '<th>Post body</th><th>Actions</th>'));
-            for (let post of posts){
-                appendBookRow(post, postsTable);
-            }
-            $('#books').append(postsTable);
+    function loadPostsSuccess(posts) {
+
+        let table =$(
+            `<table>
+                <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Actions</th>
+                </tr>
+           </table>`);
+
+        for(let post of posts){
+            let tr = $('<tr>');
+            displayTableRow(tr, post);
+            tr.appendTo(table);
         }
-    }
 
-}
-function appendBookRow(book, postsTable) {
-    let links = [];
-    if (book._acl.creator == sessionStorage['userId']) {
-        let deleteLink = $('<a href="#">[Delete]</a>').click(deleteBook.bind(this, book));
-        let editLink = $('<a href="#">[Edit]</a>').click(loadBookForEdit.bind(this, book));
-        links = [deleteLink, ' ', editLink];
+        $('#posts').append(table);
     }
-    postsTable.append($('<tr>').append(postsTable,links));
+    function displayTableRow(tr, post) {
+
+        let links = [];
+        if(post._acl.creator == sessionStorage.getItem('userId')){
+            let deleteLink = $("<a href='#'>[Delete]</a>").click(function () {
+                deletePost(post._id)
+            });
+            let editLink = $("<a href='#'>[Edit]</a>").click(function () {
+                linkEditPost();
+                loadEditPost(post._id);
+
+            });
+            links.push(deleteLink);
+            links.push(" ");
+            links.push(editLink);
+        }
+        tr.append(
+            $('<td>').text(post.Title),
+            $('<td>').text(post.body),
+            $("<td>").append(links)
+        )
+    }
 }
 
+function deletePost(postID) {
+    $.ajax({
+        method:"DELETE",
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts/" + postID,
+        headers: getKinveyUserAuthHeaders(),
+        success: deletePostSuccess,
+        error: handleAjaxError
+    });
+
+    function deletePostSuccess() {
+        showInfo('Post deleted.');
+        listPosts();
+    }
+}
 function createPost() {
+
     let postData = {
         Title: $('#postTitle').val(),
         body: $('#postBody').val()
     };
+
     $.ajax({
-        method: "POST",
+        method:"POST",
         url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts",
         headers: getKinveyUserAuthHeaders(),
         data: postData,
-        success: createBookSuccess,
+        success: createPostSuccess,
         error: handleAjaxError
     });
-    function createBookSuccess() {
-        linkViewPosts();
-        showInfo('Book created.');
+
+    function createPostSuccess() {
+        showInfo('Post created.');
+        listPosts();
     }
 }
-function editBook() {
-    let bookData = {
-        title: $('#formEditBook input[name=title]').val(),
-        author: $('#formEditBook input[name=author]').val(),
-        description:
-            $('#formEditBook textarea[name=descr]').val()
-    };
+
+function loadEditPost(postID) {
     $.ajax({
-        method: "PUT",
-        url: kinveyBaseUrl + "appdata/" + kinveyAppKey +
-        "/books/" + $('#formEditBook input[name=id]').val(),
+        method:"GET",
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts/" + postID,
         headers: getKinveyUserAuthHeaders(),
-        data: bookData,
-        success: editBookSuccess,
+        success: editPostSuccess,
         error: handleAjaxError
     });
 
-    function editBookSuccess(response) {
-        listBooks();
-        showInfo('Book edited.');
+    function editPostSuccess(post) {
+
+        $('#formEditBook input[name=title]').val(post.Title);
+        $('#formEditBook input[name=body]').val(post.body);
+        $('#formEditBook input[name=id]').val(post._id)
     }
 }
 
+function editPost() {  //formBook = EDIT BOOK!!!
 
+    let postData = {
+        Title: $('#formEditBook input[name = title]').val(),
+        body: $('#formEditBook input[name=body]').val(),
+        id:  $('#formEditBook input[name=id]').val()
+    };
 
+    $.ajax({
+        method:"PUT",
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts/" + postData.id,
+        headers: getKinveyUserAuthHeaders(),
+        data: postData,
+        success: createPostSuccess,
+        error: handleAjaxError
+    });
+
+    function createPostSuccess() {
+        showInfo('Post edited.');
+        listPosts();
+    }
+}

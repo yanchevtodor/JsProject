@@ -15,11 +15,14 @@ function linkCreatePost() {
     $("main").load("templates/createPost.html")
 }
 function linkViewPosts() {
-    $("main").load("templates/posts.html");
-
+   $("main").load("templates/posts.html");
+    listPosts();
 }
 function viewProfile() {
     $("main").load("templates/profile.html");
+}
+function linkEditPost() {
+    $("main").load("templates/editPost.html");
 }
 
 function showHideMenuLinks() {

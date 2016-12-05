@@ -19,7 +19,7 @@ function btnLogin() {
     function loginSuccess(userInfo) {
         saveAuthInSession(userInfo);
         showHideMenuLinks();
-        linkViewPosts()
+        linkViewPosts();
         showInfo('Login successful.');
     }
 }
