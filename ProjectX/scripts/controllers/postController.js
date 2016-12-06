@@ -33,6 +33,7 @@ function listPosts() {
 
         $('#posts').append(table);
     }
+
     function displayTableRow(tr, post) {
 
         let links = [];
@@ -41,9 +42,8 @@ function listPosts() {
                 deletePost(post._id)
             });
             let editLink = $("<a href='#'>[Edit]</a>").click(function () {
-                linkEditPost();
                 loadEditPost(post._id);
-
+                linkEditPost();
             });
             links.push(deleteLink);
             links.push(" ");
@@ -71,6 +71,7 @@ function deletePost(postID) {
         listPosts();
     }
 }
+
 function createPost() {
 
     let postData = {
@@ -89,7 +90,7 @@ function createPost() {
 
     function createPostSuccess() {
         showInfo('Post created.');
-        listPosts();
+        linkViewPosts();
     }
 }
 
@@ -98,30 +99,30 @@ function loadEditPost(postID) {
         method:"GET",
         url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts/" + postID,
         headers: getKinveyUserAuthHeaders(),
-        success: editPostSuccess,
+        success: loadEditPostSuccess,
         error: handleAjaxError
     });
 
-    function editPostSuccess(post) {
+    function loadEditPostSuccess(post) {
 
         $('#formEditBook input[name=title]').val(post.Title);
         $('#formEditBook input[name=body]').val(post.body);
-        $('#formEditBook input[name=id]').val(post._id)
+        $('#formEditBook input[name=id]').val(post._id);
     }
 }
 
-function editPost() {  //formBook = EDIT BOOK!!!
+function editPost() {
 
-    let postData = {
-        Title:  $('#editTitle').val(),
-        body:  $('#editBody').val(),
-        id: $('#editID').val()
+    let postDataEdit = {
+        Title:  $('#formEditBook input[name=title]').val(),
+        body:  $('#formEditBook input[name=body]').val(),
+        id: $('#formEditBook input[name=id]').val()
     };
     $.ajax({
         method:"PUT",
-        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts/" + postData.id,
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Posts/" + $('#formEditBook input[name=id]').val() ,
         headers: getKinveyUserAuthHeaders(),
-        data: postData,
+        data: postDataEdit,
         success: editPostSuccess,
         error: handleAjaxError
     });

@@ -18,8 +18,8 @@ function btnLogin() {
     });
     function loginSuccess(userInfo) {
         saveAuthInSession(userInfo);
-        showHideMenuLinks();
         linkViewPosts();
+        showHideMenuLinks();
         showInfo('Login successful.');
     }
 }
@@ -43,9 +43,9 @@ function btnRegister () {
         });
         function registerSuccess(userInfo) {
             saveAuthInSession(userInfo);
+            linkViewPosts();
             showHideMenuLinks();
             showInfo('User registration successful.');
-            linkViewPosts()
         }
     }
     else showError('The request body is either missing or incomplete')
