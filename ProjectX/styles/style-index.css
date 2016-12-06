@@ -33,20 +33,20 @@ main > section {
     display: inline-block;
     padding: 20px 5px;
 }
-table th {
-    background: #DDD;
-    padding: 10px;
+table th, table td {
+    background: #666;
 }
-
 table td {
     padding: 5px 10px;
-    background: #EEE;
+}
+table th {
+    padding: 10px;
+    background: #999;
 }
 main{
     text-align: center;
 }
 section{
-
     color: white;
     border-radius: 10px;
     text-align: center;
@@ -72,8 +72,8 @@ section h1 {
     width:500px;
 }
 #postBody{
-    width:500px;
-    height:150px;
+    /*width:500px;*/
+    /*height:150px;*/
 }
 #infoBox, #errorBox, #loadingBox {
     width: 80%;

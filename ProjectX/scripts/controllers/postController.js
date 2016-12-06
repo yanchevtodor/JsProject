@@ -46,9 +46,9 @@ function listPosts() {
                 loadEditPost(post._id);
                 linkEditPost();
             });
-            links.push(deleteLink);
-            links.push(" ");
             links.push(editLink);
+            links.push(" ");
+            links.push(deleteLink);
         }
         tr.append(
             $('<td>').text(post.Title),
@@ -130,6 +130,6 @@ function editPost() {
 
     function editPostSuccess() {
         showInfo('Post edited.');
-        listPosts();
+        linkViewPosts()
     }
 }

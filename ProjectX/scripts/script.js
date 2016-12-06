@@ -1,7 +1,7 @@
 function startApp(){
-    //sessionStorage.clear();
+    sessionStorage.clear();
     showHideMenuLinks();
-    //$("main").load("templates/home.html");
+    $("main").load("templates/home.html");
 
     $("#loadingBox").hide();
     $("#infoBox").hide();
