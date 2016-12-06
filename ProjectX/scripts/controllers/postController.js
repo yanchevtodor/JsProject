@@ -37,7 +37,8 @@ function listPosts() {
     function displayTableRow(tr, post) {
 
         let links = [];
-        if(post._acl.creator == sessionStorage.getItem('userId')){
+        if(post._acl.creator == sessionStorage.getItem('userId') ||  sessionStorage.getItem('userId') == "5842a705d23505ed75a249c9" ){
+
             let deleteLink = $("<a href='#'>[Delete]</a>").click(function () {
                 deletePost(post._id)
             });
