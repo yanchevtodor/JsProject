@@ -58,7 +58,7 @@ function logoutUser() {
 }
 
 function handleAjaxError(userInfo) {
-    if (response){
+    if (userInfo){
         let errorMsg = JSON.stringify(userInfo);
         if (userInfo.readyState === 0)
             errorMsg = "Cannot connect due to network error.";

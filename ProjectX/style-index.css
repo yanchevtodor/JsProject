@@ -1,0 +1,109 @@
+body{
+    background-color: #BBB;
+}
+#sideBar{
+    width:100px;
+    padding-bottom: 10px;
+    background: dodgerblue;
+}
+#menu {
+
+    background: black;
+    text-align: center;
+    padding: 5px;
+    line-height: 1.5;
+    border-radius: 3px;
+    overflow: auto;
+}
+#menu>#loggedInUser {
+    float: right;
+    margin-right: 10px;
+}
+#menu a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+#menu a:hover {
+    background: red;
+}
+main > section {
+    display: inline-block;
+    padding: 20px 5px;
+}
+table th, table td {
+    background: #666;
+}
+table td {
+    padding: 5px 10px;
+}
+table th {
+    padding: 10px;
+    background: #999;
+}
+main{
+    text-align: center;
+}
+section{
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    display: inline-block;
+    background-color: black;
+    margin: 20px;
+}
+#buttonLogin, #buttonRegister,#buttonCreatePost,#buttonEditPost{
+    margin-top: 20px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+#buttonLogin:hover,#buttonRegister:hover,#buttonCreatePost:hover,#buttonEditPost:hover{
+    background-color: red;
+    border-radius: 5px;
+}
+section h1 {
+    margin: 10px 0px;
+    font-size: 1.2em;
+}
+#postTitle {
+    width:500px;
+}
+#postBody{
+    /*width:500px;*/
+    /*height:150px;*/
+}
+#infoBox, #errorBox, #loadingBox {
+    width: 80%;
+    display: block;
+    margin: 20px auto 0 auto;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    border-radius: 3px;
+}
+#loadingBox {
+    background: #7CB3E9;
+}
+#infoBox {
+    background: #393;
+}
+#errorBox {
+    background: #F50;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    color: white;
+    background: black;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    text-align: center;
+    border-radius: 3px;
+}
+#loggedInUser{
+    color: #FFFFFF;
+}
